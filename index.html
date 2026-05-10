@@ -1,16 +1,14 @@
-<!-- ========================= -->
-<!-- FILE 1 = index.html -->
-<!-- ========================= -->
+<!-- SIMPAN SEBAGAI index.html -->
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>WESTLIFE TICKET PAYMENT</title>
+<title>Westlife Checkout Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -23,183 +21,289 @@ font-family:'Poppins',sans-serif;
 
 body{
 background:#050505;
-color:white;
 overflow-x:hidden;
+color:white;
 min-height:100vh;
-padding:30px;
 position:relative;
 }
 
+/* BACKGROUND */
 body::before{
 content:'';
 position:fixed;
-width:700px;
-height:700px;
-background:red;
-filter:blur(180px);
-opacity:.15;
-top:-200px;
-right:-200px;
-animation:float 7s infinite alternate;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(255,140,0,.18), transparent 30%),
+radial-gradient(circle at bottom right, rgba(255,0,0,.18), transparent 30%);
+z-index:-2;
 }
 
 body::after{
 content:'';
 position:fixed;
-width:700px;
-height:700px;
-background:#ff0000;
-filter:blur(180px);
-opacity:.12;
-bottom:-250px;
-left:-200px;
-animation:float2 9s infinite alternate;
+inset:0;
+background-image:
+radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+background-size:30px 30px;
+opacity:.15;
+animation:bgMove 20s linear infinite;
+z-index:-1;
 }
 
-@keyframes float{
+@keyframes bgMove{
 from{transform:translateY(0);}
-to{transform:translateY(50px);}
-}
-
-@keyframes float2{
-from{transform:translateY(0);}
-to{transform:translateY(-50px);}
+to{transform:translateY(-100px);}
 }
 
 .container{
-max-width:1200px;
+max-width:980px;
 margin:auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-position:relative;
-z-index:2;
+padding:30px;
 }
 
-.poster{
+.card{
 background:rgba(255,255,255,.05);
 backdrop-filter:blur(18px);
 border:1px solid rgba(255,255,255,.08);
-border-radius:28px;
+border-radius:35px;
+padding:35px;
+position:relative;
 overflow:hidden;
-box-shadow:0 0 40px rgba(255,0,0,.15);
+box-shadow:0 0 40px rgba(255,140,0,.2);
 animation:fadeUp 1s ease;
 }
 
-.poster img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
+.card::before{
+content:'';
+position:absolute;
+width:350px;
+height:350px;
+background:rgba(255,140,0,.12);
+filter:blur(120px);
+top:-150px;
+right:-100px;
 }
 
-.form-box{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:28px;
-padding:35px;
-box-shadow:0 0 40px rgba(255,0,0,.15);
-animation:fadeUp 1.2s ease;
+.card::after{
+content:'';
+position:absolute;
+width:350px;
+height:350px;
+background:rgba(255,0,0,.1);
+filter:blur(120px);
+bottom:-150px;
+left:-100px;
+}
+
+/* BANNER */
+.banner{
+width:100%;
+border-radius:25px;
+overflow:hidden;
+margin-bottom:25px;
+box-shadow:0 0 35px rgba(255,140,0,.4);
+}
+
+.banner img{
+width:100%;
+display:block;
+transition:.6s;
+}
+
+.banner img:hover{
+transform:scale(1.03);
 }
 
 .title{
-font-size:36px;
-font-weight:700;
+font-size:42px;
+font-weight:800;
+text-align:center;
+line-height:1.2;
+background:linear-gradient(to right,#fff,#ffcc66,#ff6600);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 margin-bottom:10px;
 }
 
 .subtitle{
-opacity:.7;
+text-align:center;
+color:#ccc;
 margin-bottom:30px;
-line-height:1.7;
+line-height:1.8;
 }
 
-.input-box{
-margin-bottom:18px;
+/* TIMER */
+.timer{
+padding:18px;
+border-radius:20px;
+background:rgba(255,0,0,.12);
+border:1px solid rgba(255,0,0,.3);
+text-align:center;
+font-size:24px;
+font-weight:700;
+color:#ff6666;
+margin-bottom:30px;
+animation:pulse 1.5s infinite;
 }
 
-.input-box label{
+@keyframes pulse{
+50%{
+transform:scale(1.02);
+}
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.form-group{
+margin-bottom:22px;
+}
+
+label{
 display:block;
-margin-bottom:8px;
-font-size:14px;
-opacity:.8;
+margin-bottom:10px;
+font-weight:600;
+color:#ffcc80;
 }
 
-.input-box input,
-.input-box textarea,
-.input-box select{
+input,
+textarea,
+select{
 width:100%;
-padding:15px;
+padding:16px;
 border:none;
 outline:none;
-border-radius:14px;
+border-radius:18px;
 background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.1);
 color:white;
 font-size:15px;
-border:1px solid rgba(255,255,255,.08);
+transition:.3s;
 }
 
-textarea{
-resize:none;
-height:90px;
+input:focus,
+textarea:focus,
+select:focus{
+border-color:#ff9900;
+box-shadow:0 0 20px rgba(255,153,0,.25);
+}
+
+option{
+background:#111;
 }
 
 .total-box{
 margin-top:20px;
-padding:18px;
-border-radius:18px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-}
-
-.total-title{
-opacity:.7;
-margin-bottom:8px;
-}
-
-.total-price{
-font-size:28px;
-font-weight:700;
-color:#ff4d4d;
-}
-
-.qris{
-margin-top:25px;
-display:none;
+padding:25px;
 text-align:center;
-animation:fadeUp .5s ease;
+font-size:30px;
+font-weight:800;
+border-radius:25px;
+background:linear-gradient(45deg,rgba(255,140,0,.2),rgba(255,200,0,.08));
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 25px rgba(255,153,0,.15);
 }
 
-.qris img{
-width:240px;
+/* QRIS */
+.qris-box{
+display:none;
+margin-top:30px;
+padding:30px;
+border-radius:30px;
+background:rgba(255,255,255,.04);
+border:2px dashed rgba(255,153,0,.35);
+text-align:center;
+animation:fadeUp .8s ease;
+}
+
+.qris-box img{
+width:100%;
+max-width:320px;
 border-radius:20px;
-border:3px solid rgba(255,255,255,.08);
+margin:20px 0;
+box-shadow:0 0 30px rgba(255,153,0,.35);
 }
 
-.btn{
+.qris-box h2{
+margin-bottom:10px;
+font-size:28px;
+}
+
+.qris-box p{
+color:#ccc;
+line-height:1.7;
+margin-bottom:15px;
+}
+
+/* BUTTON */
+.buy-btn{
 width:100%;
 padding:18px;
 margin-top:30px;
 border:none;
-border-radius:18px;
-background:linear-gradient(45deg,#ff0000,#ff4d4d);
-color:white;
-font-size:17px;
-font-weight:700;
+border-radius:60px;
+background:linear-gradient(45deg,#ff6600,#ffcc00);
+color:black;
+font-size:20px;
+font-weight:800;
 cursor:pointer;
-transition:.3s;
+transition:.4s;
+box-shadow:0 0 30px rgba(255,153,0,.45);
 }
 
-.btn:hover{
-transform:scale(1.03);
-box-shadow:0 0 25px red;
+.buy-btn:hover{
+transform:translateY(-4px) scale(1.02);
+}
+
+/* LOADING */
+.loading-screen{
+position:fixed;
+inset:0;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.loader{
+width:130px;
+height:130px;
+border:10px solid rgba(255,255,255,.08);
+border-top:10px solid #ff9900;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:30px;
+}
+
+.loading-screen h1{
+font-size:42px;
+margin-bottom:15px;
+color:#ffcc66;
+}
+
+.loading-screen p{
+color:#ddd;
+text-align:center;
+line-height:1.8;
+font-size:18px;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
 }
 
 @keyframes fadeUp{
 from{
 opacity:0;
-transform:translateY(30px);
+transform:translateY(40px);
 }
 to{
 opacity:1;
@@ -207,9 +311,10 @@ transform:translateY(0);
 }
 }
 
-@media(max-width:900px){
+/* MOBILE */
+@media(max-width:768px){
 
-.container{
+.grid{
 grid-template-columns:1fr;
 }
 
@@ -217,113 +322,279 @@ grid-template-columns:1fr;
 font-size:30px;
 }
 
+.card{
+padding:25px;
+}
+
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<div class="poster">
-<img src="banner.jpg">
+<div class="card">
+
+<div class="banner">
+<img src="banner.png">
 </div>
 
-<div class="form-box">
+<h1 class="title">
+WESTLIFE WORLD TOUR
+</h1>
 
-<div class="title">
-WESTLIFE TOUR
+<p class="subtitle">
+Official Premium Ticket Reservation System
+</p>
+
+<div class="timer">
+Sisa Waktu Pengisian :
+<span id="timer">07:00</span>
 </div>
 
-<div class="subtitle">
-Silahkan lengkapi data pembelian tiket konser anda.
-</div>
+<form id="checkoutForm">
 
-<div class="input-box">
+<div class="form-group">
 <label>Nama Lengkap</label>
-<input type="text" id="nama">
+<input type="text" id="nama" required>
 </div>
 
-<div class="input-box">
+<div class="grid">
+
+<div class="form-group">
+<label>Nomor Identitas</label>
+<input type="text" id="identitas" required>
+</div>
+
+<div class="form-group">
 <label>Email</label>
-<input type="email" id="email">
+<input type="email" id="email" required>
 </div>
 
-<div class="input-box">
-<label>WhatsApp</label>
-<input type="text" id="wa">
 </div>
 
-<div class="input-box">
-<label>Alamat</label>
-<textarea id="alamat"></textarea>
+<div class="grid">
+
+<div class="form-group">
+<label>Nomor WhatsApp</label>
+<input type="tel" id="wa" required>
 </div>
 
-<div class="input-box">
+<div class="form-group">
 <label>Kategori Tiket</label>
-<select id="ticketCategory" onchange="hitungTotal()">
-<option value="">Pilih Tiket</option>
-<option value="VIP" data-price="3500000">VIP - Rp3.500.000</option>
-<option value="Festival" data-price="1800000">Festival - Rp1.800.000</option>
-<option value="Regular" data-price="950000">Regular - Rp950.000</option>
+
+<select id="ticketCategory" required>
+
+<option value="">
+Pilih Category
+</option>
+
+<option value="2750000">
+VIP PACKAGE - Rp 2.750.000
+</option>
+
+<option value="2500000">
+CAT 1 A & B - Rp 2.500.000
+</option>
+
+<option value="2250000">
+CAT 2 A & B - Rp 2.250.000
+</option>
+
+<option value="1850000">
+CAT 3 A & B - Rp 1.850.000
+</option>
+
+<option value="1450000">
+CAT 4 A & B - Rp 1.450.000
+</option>
+
+<option value="1250000">
+CAT 5 A & B - Rp 1.250.000
+</option>
+
+<option value="850000">
+CAT 6 A & B - Rp 850.000
+</option>
+
 </select>
+
 </div>
 
-<div class="input-box">
+</div>
+
+<div class="grid">
+
+<div class="form-group">
 <label>Jumlah Tiket</label>
-<input type="number" id="jumlah" min="1" onchange="hitungTotal()">
+<input type="number" id="jumlah" min="1" required>
+</div>
+
+<div class="form-group">
+<label>Total Pembayaran</label>
+<input type="text" id="total" readonly>
+</div>
+
+</div>
+
+<div class="form-group">
+<label>Alamat / Domisili</label>
+<textarea rows="4" id="alamat" required></textarea>
+</div>
+
+<!-- QRIS -->
+<div class="qris-box" id="qrisBox">
+
+<h2>PEMBAYARAN QRIS</h2>
+
+<p>
+Silahkan lakukan pembayaran sesuai total tagihan.
+</p>
+
+<img src="qris.jpg">
+
+<div class="form-group">
+<label>Upload Bukti Pembayaran</label>
+<input type="file" id="bukti" accept="image/*" required>
+</div>
+
 </div>
 
 <div class="total-box">
-<div class="total-title">TOTAL PEMBAYARAN</div>
-<div class="total-price" id="totalHarga">
-Rp0
-</div>
-</div>
-
-<div class="qris" id="qrisBox">
-<img src="qris.jpg">
+TOTAL :
+<span id="totalDisplay">
+Rp 0
+</span>
 </div>
 
-<button class="btn" onclick="simpanDataPembelian()">
+<button type="submit" class="buy-btn">
 BELI SEKARANG
 </button>
 
+</form>
+
 </div>
+
+</div>
+
+<!-- LOADING -->
+<div class="loading-screen" id="loadingScreen">
+
+<div class="loader"></div>
+
+<h1>
+MEMPROSES PEMBELIAN
+</h1>
+
+<p>
+Mohon Tunggu...
+<br>
+Sistem Sedang Memvalidasi Data Pembayaran Anda
+</p>
 
 </div>
 
 <script>
 
-function hitungTotal(){
+/* ELEMENT */
+const category = document.getElementById('ticketCategory');
+const jumlah = document.getElementById('jumlah');
+const total = document.getElementById('total');
+const totalDisplay = document.getElementById('totalDisplay');
+const qrisBox = document.getElementById('qrisBox');
 
-const kategori = document.getElementById('ticketCategory');
-const jumlah = document.getElementById('jumlah').value;
+/* FORMAT */
+function rupiah(number){
 
-const selected = kategori.options[kategori.selectedIndex];
+return 'Rp ' + number.toLocaleString('id-ID');
 
-const price = selected.getAttribute('data-price');
+}
 
-const total = (price || 0) * jumlah;
+/* CALCULATE */
+function calculate(){
 
-document.getElementById('totalHarga').innerText =
-'Rp' + Number(total).toLocaleString('id-ID');
+const price = parseInt(category.value || 0);
 
-if(total > 0){
-document.getElementById('qrisBox').style.display = 'block';
+const qty = parseInt(jumlah.value || 0);
+
+const grandTotal = price * qty;
+
+total.value = rupiah(grandTotal);
+
+totalDisplay.innerHTML = rupiah(grandTotal);
+
+/* SHOW QRIS */
+if(qty > 0){
+
+qrisBox.style.display='block';
+
 }else{
-document.getElementById('qrisBox').style.display = 'none';
-}
+
+qrisBox.style.display='none';
 
 }
 
-function simpanDataPembelian(){
+}
 
-const data = {
+category.addEventListener('change',calculate);
 
-eventName:'WESTLIFE THE WILD DREAMS TOUR',
+jumlah.addEventListener('input',calculate);
+
+/* TIMER */
+let time = 420;
+
+const timerDisplay = document.getElementById('timer');
+
+const countdown = setInterval(()=>{
+
+let minutes = Math.floor(time / 60);
+
+let seconds = time % 60;
+
+minutes = minutes < 10 ? '0'+minutes : minutes;
+
+seconds = seconds < 10 ? '0'+seconds : seconds;
+
+timerDisplay.innerHTML = `${minutes}:${seconds}`;
+
+if(time <= 0){
+
+clearInterval(countdown);
+
+window.location.href='failed.html';
+
+}
+
+time--;
+
+},1000);
+
+/* FORM */
+document.getElementById('checkoutForm')
+.addEventListener('submit',function(e){
+
+e.preventDefault();
+
+const form = this;
+
+if(!form.checkValidity()){
+
+alert('Semua Data Wajib Diisi');
+
+return;
+
+}
+
+/* SAVE DATA */
+const dataPembelian = {
+
+eventName:'WESTLIFE WORLD TOUR',
 
 nama:document.getElementById('nama').value,
+
+identitas:document.getElementById('identitas').value,
 
 email:document.getElementById('email').value,
 
@@ -331,24 +602,34 @@ wa:document.getElementById('wa').value,
 
 alamat:document.getElementById('alamat').value,
 
-kategori:document.getElementById('ticketCategory').value,
+kategori:category.options[
+category.selectedIndex
+].text,
 
 jumlah:document.getElementById('jumlah').value,
 
-total:document.getElementById('totalHarga').innerText,
+total:document.getElementById('total').value,
 
-banner:'banner.jpg'
+banner:'banner.png'
 
 };
 
 localStorage.setItem(
 'westlife_failed_payment',
-JSON.stringify(data)
+JSON.stringify(dataPembelian)
 );
+
+/* LOADING */
+document.getElementById('loadingScreen')
+.style.display='flex';
+
+setTimeout(()=>{
 
 window.location.href='failed.html';
 
-}
+},5000);
+
+});
 
 </script>
 
