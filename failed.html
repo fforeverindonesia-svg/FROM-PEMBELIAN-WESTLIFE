@@ -1,285 +1,201 @@
-<!-- ========================= -->
-<!-- FILE 2 = failed.html -->
-<!-- ========================= -->
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>PAYMENT FAILED</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran Gagal</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Arial, sans-serif;
 }
 
 body{
-background:#050505;
-color:white;
-overflow-x:hidden;
+background:linear-gradient(135deg,#0f0f0f,#1a1a1a,#111);
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:30px;
-position:relative;
+overflow:hidden;
+color:white;
+padding:20px;
 }
 
-body::before{
-content:'';
-position:fixed;
-width:700px;
-height:700px;
-background:red;
-filter:blur(180px);
-opacity:.18;
-top:-200px;
-right:-200px;
-animation:float 7s infinite alternate;
+.background{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-1;
 }
 
-body::after{
-content:'';
-position:fixed;
-width:700px;
-height:700px;
-background:#ff0000;
-filter:blur(200px);
-opacity:.12;
-bottom:-300px;
-left:-200px;
-animation:float2 9s infinite alternate;
+.circle{
+position:absolute;
+border-radius:50%;
+background:rgba(255,0,0,0.15);
+animation:float 10s infinite linear;
+}
+
+.circle:nth-child(1){
+width:300px;
+height:300px;
+top:-100px;
+left:-100px;
+}
+
+.circle:nth-child(2){
+width:250px;
+height:250px;
+bottom:-100px;
+right:-100px;
+animation-duration:14s;
+}
+
+.circle:nth-child(3){
+width:180px;
+height:180px;
+top:50%;
+left:70%;
+animation-duration:18s;
 }
 
 @keyframes float{
-from{transform:translateY(0px);}
-to{transform:translateY(50px);}
+0%{
+transform:translateY(0px) rotate(0deg);
 }
-
-@keyframes float2{
-from{transform:translateY(0px);}
-to{transform:translateY(-60px);}
+50%{
+transform:translateY(40px) rotate(180deg);
+}
+100%{
+transform:translateY(0px) rotate(360deg);
+}
 }
 
 .container{
 width:100%;
-max-width:1100px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-z-index:2;
-}
-
-.poster{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.1);
-border-radius:30px;
-overflow:hidden;
-box-shadow:0 0 40px rgba(255,0,0,.2);
-}
-
-.poster img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.content{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.1);
-border-radius:30px;
+max-width:500px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.1);
 padding:35px;
-box-shadow:0 0 40px rgba(255,0,0,.2);
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,0,0,0.3);
+animation:fadeIn 1s ease;
 }
 
-.failed{
-font-size:42px;
-font-weight:700;
-color:#ff2e2e;
-margin-bottom:10px;
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-.subtitle{
-opacity:.7;
+.icon{
+font-size:90px;
+margin-bottom:20px;
+animation:shake 1.5s infinite;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+50%{transform:translateX(8px);}
+75%{transform:translateX(-8px);}
+100%{transform:translateX(0);}
+}
+
+h1{
+font-size:36px;
+margin-bottom:15px;
+color:#ff4d4d;
+}
+
+p{
+font-size:16px;
+line-height:1.7;
+color:#ddd;
 margin-bottom:25px;
-line-height:1.6;
 }
 
 .box{
-background:rgba(255,255,255,.05);
-padding:18px;
-border-radius:18px;
-margin-bottom:15px;
-border:1px solid rgba(255,255,255,.08);
+background:rgba(255,0,0,0.1);
+padding:15px;
+border-radius:15px;
+margin-bottom:25px;
+border:1px solid rgba(255,0,0,0.3);
 }
 
-.label{
-font-size:13px;
-opacity:.6;
-margin-bottom:6px;
-}
-
-.value{
-font-size:16px;
-font-weight:500;
-}
-
-.warning{
-margin-top:20px;
-padding:18px;
-background:rgba(255,0,0,.08);
-border:1px solid rgba(255,0,0,.25);
-border-radius:18px;
-color:#ffb3b3;
-line-height:1.7;
-}
-
-.btn{
-margin-top:25px;
+button{
 width:100%;
 padding:16px;
 border:none;
-border-radius:16px;
+border-radius:15px;
+font-size:18px;
+font-weight:bold;
 background:linear-gradient(45deg,#ff0000,#ff4d4d);
 color:white;
-font-size:16px;
-font-weight:700;
 cursor:pointer;
-transition:.3s;
+transition:0.3s;
+box-shadow:0 0 20px rgba(255,0,0,0.4);
 }
 
-.btn:hover{
+button:hover{
 transform:scale(1.03);
-box-shadow:0 0 25px red;
+box-shadow:0 0 30px rgba(255,0,0,0.7);
 }
 
-@media(max-width:900px){
-
-.container{
-grid-template-columns:1fr;
+.footer{
+margin-top:20px;
+font-size:13px;
+color:#999;
 }
-
-.failed{
-font-size:34px;
-}
-
-}
-
 </style>
 </head>
+
 <body>
+
+<div class="background">
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+</div>
 
 <div class="container">
 
-<div class="poster">
-<img id="banner" src="banner.jpg">
-</div>
+<div class="icon">❌</div>
 
-<div class="content">
+<h1>PEMBAYARAN GAGAL</h1>
 
-<div class="failed">
-PAYMENT FAILED
-</div>
-
-<div class="subtitle">
-Data pembayaran anda gagal diproses.
-Silahkan periksa kembali data pemesanan anda.
-</div>
+<p>
+Transaksi tiket Westlife Anda tidak dapat diproses.
+Silahkan periksa kembali data pemesanan dan pastikan semua data telah diisi dengan benar.
+</p>
 
 <div class="box">
-<div class="label">EVENT</div>
-<div class="value" id="eventName"></div>
+<b>Penyebab kemungkinan:</b><br><br>
+• Data pemesan belum lengkap<br>
+• QRIS belum dibayar<br>
+• Waktu pembayaran habis<br>
+• Jumlah tiket belum sesuai
 </div>
 
-<div class="box">
-<div class="label">NAMA</div>
-<div class="value" id="nama"></div>
-</div>
-
-<div class="box">
-<div class="label">EMAIL</div>
-<div class="value" id="email"></div>
-</div>
-
-<div class="box">
-<div class="label">WHATSAPP</div>
-<div class="value" id="wa"></div>
-</div>
-
-<div class="box">
-<div class="label">ALAMAT</div>
-<div class="value" id="alamat"></div>
-</div>
-
-<div class="box">
-<div class="label">KATEGORI</div>
-<div class="value" id="kategori"></div>
-</div>
-
-<div class="box">
-<div class="label">JUMLAH TIKET</div>
-<div class="value" id="jumlah"></div>
-</div>
-
-<div class="box">
-<div class="label">TOTAL</div>
-<div class="value" id="total"></div>
-</div>
-
-<div class="warning">
-Data tidak lengkap atau pembayaran gagal diverifikasi oleh sistem.
-</div>
-
-<button class="btn" onclick="window.location.href='index.html'">
-KEMBALI
+<button onclick="window.location.href='index.html'">
+Kembali Ke Pemesanan
 </button>
 
+<div class="footer">
+WESTLIFE CONCERT SYSTEM © 2026
 </div>
 
 </div>
-
-<script>
-
-const data = JSON.parse(
-localStorage.getItem('westlife_failed_payment')
-);
-
-if(data){
-
-document.getElementById('eventName').innerText = data.eventName || '-';
-
-document.getElementById('nama').innerText = data.nama || '-';
-
-document.getElementById('email').innerText = data.email || '-';
-
-document.getElementById('wa').innerText = data.wa || '-';
-
-document.getElementById('alamat').innerText = data.alamat || '-';
-
-document.getElementById('kategori').innerText = data.kategori || '-';
-
-document.getElementById('jumlah').innerText = data.jumlah || '-';
-
-document.getElementById('total').innerText = data.total || '-';
-
-if(data.banner){
-document.getElementById('banner').src = data.banner;
-}
-
-}
-
-</script>
 
 </body>
 </html>
