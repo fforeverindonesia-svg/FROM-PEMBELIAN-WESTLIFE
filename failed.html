@@ -1,0 +1,295 @@
+<!-- ========================= -->
+<!-- FILE 2 : failed.html -->
+<!-- ========================= -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment Failed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#040404;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow-x:hidden;
+}
+
+.bg{
+position:fixed;
+width:600px;
+height:600px;
+background:red;
+filter:blur(200px);
+opacity:.2;
+border-radius:50%;
+animation:bg 8s infinite alternate;
+}
+
+@keyframes bg{
+0%{
+transform:translate(-150px,-150px);
+}
+100%{
+transform:translate(120px,120px);
+}
+}
+
+.card{
+position:relative;
+z-index:2;
+width:100%;
+max-width:480px;
+background:rgba(0,0,0,.92);
+border-radius:40px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 0 50px rgba(255,0,0,.2);
+animation:show .8s ease;
+}
+
+@keyframes show{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.poster{
+width:100%;
+height:300px;
+object-fit:cover;
+display:block;
+}
+
+.content{
+padding:28px;
+}
+
+.failed{
+font-size:55px;
+font-weight:800;
+text-align:center;
+line-height:1;
+color:#ff2b2b;
+text-shadow:0 0 20px rgba(255,0,0,.6);
+margin-bottom:25px;
+}
+
+.desc{
+text-align:center;
+font-size:17px;
+color:#ccc;
+line-height:1.7;
+margin-bottom:35px;
+}
+
+.title{
+font-size:20px;
+font-weight:700;
+margin-bottom:25px;
+color:#ff3c3c;
+text-shadow:0 0 15px rgba(255,0,0,.5);
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+margin-bottom:22px;
+}
+
+.label{
+color:#888;
+font-size:17px;
+}
+
+.value{
+color:white;
+font-size:17px;
+font-weight:500;
+text-align:right;
+max-width:60%;
+word-break:break-word;
+}
+
+.badge{
+background:red;
+padding:12px 30px;
+border-radius:18px;
+font-weight:700;
+box-shadow:0 0 20px rgba(255,0,0,.7);
+}
+
+.line{
+width:100%;
+height:8px;
+background:#111;
+border-radius:20px;
+margin-top:35px;
+overflow:hidden;
+}
+
+.line span{
+display:block;
+width:40%;
+height:100%;
+background:linear-gradient(90deg,red,orange);
+animation:line 2s infinite;
+}
+
+@keyframes line{
+0%{
+margin-left:-40%;
+}
+100%{
+margin-left:100%;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="card">
+
+<img src="banner.jpg" class="poster">
+
+<div class="content">
+
+<div class="failed">
+PAYMENT<br>FAILED
+</div>
+
+<div class="desc" id="pesan">
+Data pembelian tidak dapat diverifikasi oleh sistem.
+Silahkan periksa kembali data pemesanan anda.
+</div>
+
+<div class="title">
+RINGKASAN PEMESANAN
+</div>
+
+<div class="row">
+<div class="label">Nama</div>
+<div class="value" id="nama"></div>
+</div>
+
+<div class="row">
+<div class="label">Email</div>
+<div class="value" id="email"></div>
+</div>
+
+<div class="row">
+<div class="label">WhatsApp</div>
+<div class="value" id="wa"></div>
+</div>
+
+<div class="row">
+<div class="label">Alamat</div>
+<div class="value" id="alamat"></div>
+</div>
+
+<div class="row">
+<div class="label">Kategori</div>
+<div class="value" id="kategori"></div>
+</div>
+
+<div class="row">
+<div class="label">Jumlah Tiket</div>
+<div class="value" id="jumlah"></div>
+</div>
+
+<div class="row">
+<div class="label">Status</div>
+<div class="value">
+<span class="badge">FAILED</span>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Waktu</div>
+<div class="value" id="waktu"></div>
+</div>
+
+<div class="row">
+<div class="label">Order ID</div>
+<div class="value" id="orderid"></div>
+</div>
+
+<div class="line">
+<span></span>
+</div>
+
+</div>
+</div>
+
+<script>
+
+document.getElementById("nama").innerHTML=
+localStorage.getItem("nama") || "-";
+
+document.getElementById("email").innerHTML=
+localStorage.getItem("email") || "-";
+
+document.getElementById("wa").innerHTML=
+localStorage.getItem("wa") || "-";
+
+document.getElementById("alamat").innerHTML=
+localStorage.getItem("alamat") || "-";
+
+document.getElementById("kategori").innerHTML=
+localStorage.getItem("kategori") || "-";
+
+document.getElementById("jumlah").innerHTML=
+localStorage.getItem("jumlah") || "-";
+
+let now=new Date();
+
+document.getElementById("waktu").innerHTML=
+now.toLocaleString('id-ID');
+
+let random=Math.floor(Math.random()*99999999);
+
+document.getElementById("orderid").innerHTML=
+"WL25-"+random;
+
+let pesan=[
+"Data pembelian tidak dapat diverifikasi oleh sistem. Silahkan periksa kembali data pemesanan anda.",
+
+"Sistem mendeteksi ketidaksesuaian data transaksi. Mohon lakukan pengecekan ulang sebelum mencoba kembali.",
+
+"Verifikasi pembayaran gagal diproses karena data pembelian tidak lengkap.",
+
+"Order tidak dapat diproses sementara waktu. Pastikan seluruh data telah diisi dengan benar."
+];
+
+let randomPesan=pesan[Math.floor(Math.random()*pesan.length)];
+
+document.getElementById("pesan").innerHTML=randomPesan;
+
+</script>
+
+</body>
+</html>
