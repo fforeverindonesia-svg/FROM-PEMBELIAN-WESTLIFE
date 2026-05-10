@@ -1,17 +1,19 @@
 <!-- ========================= -->
-<!-- FILE 1 : index.html -->
+<!-- FILE 1 = index.html -->
 <!-- ========================= -->
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Westlife Ticketing</title>
+<title>WESTLIFE TICKET PAYMENT</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -22,44 +24,179 @@ font-family:'Poppins',sans-serif;
 body{
 background:#050505;
 color:white;
-padding:20px;
+overflow-x:hidden;
 min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
+padding:30px;
+position:relative;
 }
 
-.bg{
+body::before{
+content:'';
 position:fixed;
-width:500px;
-height:500px;
+width:700px;
+height:700px;
 background:red;
 filter:blur(180px);
-opacity:.2;
-border-radius:50%;
-animation:move 8s infinite alternate;
+opacity:.15;
+top:-200px;
+right:-200px;
+animation:float 7s infinite alternate;
 }
 
-@keyframes move{
-0%{transform:translate(-100px,-100px);}
-100%{transform:translate(150px,150px);}
+body::after{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#ff0000;
+filter:blur(180px);
+opacity:.12;
+bottom:-250px;
+left:-200px;
+animation:float2 9s infinite alternate;
+}
+
+@keyframes float{
+from{transform:translateY(0);}
+to{transform:translateY(50px);}
+}
+
+@keyframes float2{
+from{transform:translateY(0);}
+to{transform:translateY(-50px);}
 }
 
 .container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 position:relative;
 z-index:2;
-width:100%;
-max-width:450px;
-background:#0b0b0b;
-border:1px solid rgba(255,255,255,.08);
-border-radius:30px;
-padding:25px;
-box-shadow:0 0 40px rgba(255,0,0,.15);
-animation:fade 1s ease;
 }
 
-@keyframes fade{
+.poster{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 0 40px rgba(255,0,0,.15);
+animation:fadeUp 1s ease;
+}
+
+.poster img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.form-box{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:28px;
+padding:35px;
+box-shadow:0 0 40px rgba(255,0,0,.15);
+animation:fadeUp 1.2s ease;
+}
+
+.title{
+font-size:36px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.subtitle{
+opacity:.7;
+margin-bottom:30px;
+line-height:1.7;
+}
+
+.input-box{
+margin-bottom:18px;
+}
+
+.input-box label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+opacity:.8;
+}
+
+.input-box input,
+.input-box textarea,
+.input-box select{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:14px;
+background:rgba(255,255,255,.06);
+color:white;
+font-size:15px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+textarea{
+resize:none;
+height:90px;
+}
+
+.total-box{
+margin-top:20px;
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.total-title{
+opacity:.7;
+margin-bottom:8px;
+}
+
+.total-price{
+font-size:28px;
+font-weight:700;
+color:#ff4d4d;
+}
+
+.qris{
+margin-top:25px;
+display:none;
+text-align:center;
+animation:fadeUp .5s ease;
+}
+
+.qris img{
+width:240px;
+border-radius:20px;
+border:3px solid rgba(255,255,255,.08);
+}
+
+.btn{
+width:100%;
+padding:18px;
+margin-top:30px;
+border:none;
+border-radius:18px;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 25px red;
+}
+
+@keyframes fadeUp{
 from{
 opacity:0;
 transform:translateY(30px);
@@ -70,151 +207,149 @@ transform:translateY(0);
 }
 }
 
-.poster{
-width:100%;
-border-radius:25px;
-height:240px;
-object-fit:cover;
-margin-bottom:25px;
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
 }
 
 .title{
 font-size:30px;
-font-weight:800;
-margin-bottom:5px;
 }
 
-.sub{
-color:#aaa;
-margin-bottom:25px;
 }
 
-.input{
-width:100%;
-height:60px;
-background:#111;
-border:none;
-outline:none;
-border-radius:18px;
-padding:0 20px;
-color:white;
-font-size:16px;
-margin-bottom:18px;
-}
-
-select.input{
-appearance:none;
-}
-
-.btn{
-width:100%;
-height:60px;
-border:none;
-border-radius:20px;
-background:linear-gradient(90deg,#ff0000,#ff5e00);
-color:white;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 0 20px rgba(255,0,0,.4);
-}
-
-.btn:hover{
-transform:scale(1.03);
-}
-
-.loading{
-display:none;
-margin-top:20px;
-text-align:center;
-}
-
-.loader{
-width:60px;
-height:60px;
-border:5px solid rgba(255,255,255,.1);
-border-top:5px solid red;
-border-radius:50%;
-margin:auto;
-animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
-
-.loading p{
-margin-top:15px;
-color:#bbb;
-font-size:15px;
-}
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
-
 <div class="container">
 
-<img src="banner.jpg" class="poster">
+<div class="poster">
+<img src="banner.jpg">
+</div>
 
-<div class="title">WESTLIFE</div>
-<div class="sub">25 YEARS OF HITS TOUR</div>
+<div class="form-box">
 
-<input type="text" class="input" id="nama" placeholder="Nama Lengkap">
+<div class="title">
+WESTLIFE TOUR
+</div>
 
-<input type="email" class="input" id="email" placeholder="Email">
+<div class="subtitle">
+Silahkan lengkapi data pembelian tiket konser anda.
+</div>
 
-<input type="number" class="input" id="wa" placeholder="WhatsApp">
+<div class="input-box">
+<label>Nama Lengkap</label>
+<input type="text" id="nama">
+</div>
 
-<input type="text" class="input" id="alamat" placeholder="Alamat">
+<div class="input-box">
+<label>Email</label>
+<input type="email" id="email">
+</div>
 
-<select class="input" id="kategori">
-<option value="">Kategori Tiket</option>
-<option>Festival</option>
-<option>VIP</option>
-<option>VVIP</option>
-<option>Tribune</option>
+<div class="input-box">
+<label>WhatsApp</label>
+<input type="text" id="wa">
+</div>
+
+<div class="input-box">
+<label>Alamat</label>
+<textarea id="alamat"></textarea>
+</div>
+
+<div class="input-box">
+<label>Kategori Tiket</label>
+<select id="ticketCategory" onchange="hitungTotal()">
+<option value="">Pilih Tiket</option>
+<option value="VIP" data-price="3500000">VIP - Rp3.500.000</option>
+<option value="Festival" data-price="1800000">Festival - Rp1.800.000</option>
+<option value="Regular" data-price="950000">Regular - Rp950.000</option>
 </select>
+</div>
 
-<input type="number" class="input" id="jumlah" placeholder="Jumlah Tiket">
+<div class="input-box">
+<label>Jumlah Tiket</label>
+<input type="number" id="jumlah" min="1" onchange="hitungTotal()">
+</div>
 
-<button class="btn" onclick="proses()">LANJUTKAN PEMBAYARAN</button>
+<div class="total-box">
+<div class="total-title">TOTAL PEMBAYARAN</div>
+<div class="total-price" id="totalHarga">
+Rp0
+</div>
+</div>
 
-<div class="loading" id="loading">
-<div class="loader"></div>
-<p>Memverifikasi data pembelian...</p>
+<div class="qris" id="qrisBox">
+<img src="qris.jpg">
+</div>
+
+<button class="btn" onclick="simpanDataPembelian()">
+BELI SEKARANG
+</button>
+
 </div>
 
 </div>
 
 <script>
-function proses(){
 
-let nama=document.getElementById('nama').value;
-let email=document.getElementById('email').value;
-let wa=document.getElementById('wa').value;
-let alamat=document.getElementById('alamat').value;
-let kategori=document.getElementById('kategori').value;
-let jumlah=document.getElementById('jumlah').value;
+function hitungTotal(){
 
-localStorage.setItem("nama",nama);
-localStorage.setItem("email",email);
-localStorage.setItem("wa",wa);
-localStorage.setItem("alamat",alamat);
-localStorage.setItem("kategori",kategori);
-localStorage.setItem("jumlah",jumlah);
+const kategori = document.getElementById('ticketCategory');
+const jumlah = document.getElementById('jumlah').value;
 
-document.getElementById("loading").style.display="block";
+const selected = kategori.options[kategori.selectedIndex];
 
-setTimeout(()=>{
-window.location.href="failed.html";
-},3000);
+const price = selected.getAttribute('data-price');
+
+const total = (price || 0) * jumlah;
+
+document.getElementById('totalHarga').innerText =
+'Rp' + Number(total).toLocaleString('id-ID');
+
+if(total > 0){
+document.getElementById('qrisBox').style.display = 'block';
+}else{
+document.getElementById('qrisBox').style.display = 'none';
+}
 
 }
+
+function simpanDataPembelian(){
+
+const data = {
+
+eventName:'WESTLIFE THE WILD DREAMS TOUR',
+
+nama:document.getElementById('nama').value,
+
+email:document.getElementById('email').value,
+
+wa:document.getElementById('wa').value,
+
+alamat:document.getElementById('alamat').value,
+
+kategori:document.getElementById('ticketCategory').value,
+
+jumlah:document.getElementById('jumlah').value,
+
+total:document.getElementById('totalHarga').innerText,
+
+banner:'banner.jpg'
+
+};
+
+localStorage.setItem(
+'westlife_failed_payment',
+JSON.stringify(data)
+);
+
+window.location.href='failed.html';
+
+}
+
 </script>
 
 </body>
