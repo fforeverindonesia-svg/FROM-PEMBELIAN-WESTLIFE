@@ -3,53 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WESTLIFE Ticket Booking</title>
+<title>Westlife Failed Payment</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#050505;
-color:white;
+background:#000;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 overflow-x:hidden;
+color:white;
 }
 
 body::before{
 content:'';
 position:fixed;
-width:100%;
-height:100%;
+inset:0;
 background:
-radial-gradient(circle at top,#ff000055,transparent 40%),
-radial-gradient(circle at bottom,#ffffff11,transparent 30%);
+radial-gradient(circle at top,#ff000055,#000 60%);
 z-index:-1;
-animation:bgMove 10s linear infinite alternate;
+animation:bgMove 6s infinite alternate;
 }
 
 @keyframes bgMove{
-0%{transform:scale(1);}
-100%{transform:scale(1.1);}
+0%{
+transform:scale(1);
+}
+100%{
+transform:scale(1.15);
+}
 }
 
 .container{
-width:95%;
-max-width:450px;
-margin:20px auto;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:25px;
+width:100%;
+max-width:430px;
+background:rgba(0,0,0,.92);
+border-radius:38px;
 overflow:hidden;
-box-shadow:0 0 30px rgba(255,0,0,0.3);
-animation:fadeUp 1s ease;
+border:1px solid rgba(255,255,255,.2);
+box-shadow:0 0 45px rgba(255,0,0,.45);
+animation:fade .8s ease;
+backdrop-filter:blur(8px);
 }
 
-@keyframes fadeUp{
+@keyframes fade{
 from{
 opacity:0;
 transform:translateY(40px);
@@ -62,114 +68,122 @@ transform:translateY(0);
 
 .banner{
 width:100%;
-height:250px;
+height:260px;
 object-fit:cover;
+display:block;
 }
 
 .content{
-padding:20px;
+padding:28px;
 }
 
-h1{
-font-size:28px;
-text-align:center;
-margin-bottom:10px;
-color:#fff;
-text-shadow:0 0 15px red;
-}
-
-.timer{
-background:#ff0000;
-padding:12px;
-text-align:center;
-border-radius:15px;
+.title{
+font-size:20px;
 font-weight:bold;
-margin-bottom:20px;
-animation:pulse 1s infinite;
+color:#ff2b2b;
+margin-bottom:30px;
+text-shadow:0 0 10px red;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:15px;
+margin-bottom:28px;
+}
+
+.label{
+color:#9f9f9f;
+font-size:17px;
+min-width:110px;
+}
+
+.value{
+font-size:18px;
+font-weight:bold;
+text-align:right;
+line-height:1.5;
+flex:1;
+word-break:break-word;
+}
+
+.status{
+background:#ff0000;
+padding:14px 38px;
+border-radius:18px;
+font-size:20px;
+font-weight:bold;
+box-shadow:0 0 20px red;
+animation:pulse 1s infinite alternate;
 }
 
 @keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.03);}
-100%{transform:scale(1);}
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.06);
+}
 }
 
-.inputBox{
-margin-bottom:15px;
-}
-
-.inputBox label{
-display:block;
-margin-bottom:6px;
-font-size:14px;
-}
-
-.inputBox input,
-.inputBox select{
-width:100%;
-padding:14px;
-border:none;
-border-radius:15px;
+.bottom{
+margin-top:30px;
+height:12px;
 background:#111;
-color:white;
-outline:none;
-font-size:15px;
-}
-
-.summary{
-background:#111;
-padding:15px;
-border-radius:15px;
-margin-top:15px;
-line-height:1.8;
-border:1px solid #333;
-}
-
-.qrisBox{
-display:none;
-margin-top:20px;
-text-align:center;
-animation:fadeIn 1s ease;
-}
-
-.qrisBox img{
-width:100%;
 border-radius:20px;
-box-shadow:0 0 30px rgba(255,255,255,0.2);
+overflow:hidden;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+.bottom span{
+display:block;
+height:100%;
+width:35%;
+margin-left:auto;
+background:linear-gradient(90deg,#ff0000,#ff6600);
+border-radius:20px;
+box-shadow:0 0 20px red;
+animation:bar 2s infinite alternate;
 }
 
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:15px;
-background:linear-gradient(45deg,#ff0000,#ff4d4d);
-color:white;
+@keyframes bar{
+from{
+width:35%;
+}
+to{
+width:48%;
+}
+}
+
+@media(max-width:500px){
+
+.banner{
+height:220px;
+}
+
+.title{
+font-size:17px;
+}
+
+.label{
+font-size:15px;
+min-width:95px;
+}
+
+.value{
+font-size:16px;
+}
+
+.status{
 font-size:18px;
-font-weight:bold;
-cursor:pointer;
-margin-top:20px;
-transition:0.3s;
-box-shadow:0 0 20px rgba(255,0,0,0.5);
+padding:13px 28px;
 }
 
-button:hover{
-transform:scale(1.03);
 }
 
-.note{
-text-align:center;
-font-size:12px;
-margin-top:15px;
-opacity:0.7;
-}
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -178,61 +192,91 @@ opacity:0.7;
 
 <div class="content">
 
-<h1>WESTLIFE</h1>
-
-<div class="timer" id="timer">
-Sisa Waktu: 07:00
+<div class="title">
+RINGKASAN PEMESANAN
 </div>
 
-<div class="inputBox">
-<label>Nama Lengkap</label>
-<input type="text" id="nama" required>
+<div class="row">
+<div class="label">Nama Event</div>
+<div class="value">
+WESTLIFE 25 YEARS OF HITS
+</div>
 </div>
 
-<div class="inputBox">
-<label>Email</label>
-<input type="email" id="email" required>
+<div class="row">
+<div class="label">Tanggal</div>
+<div class="value">
+Saturday, 23 January 2027
+</div>
 </div>
 
-<div class="inputBox">
-<label>Nomor WhatsApp</label>
-<input type="number" id="wa" required>
+<div class="row">
+<div class="label">Venue</div>
+<div class="value">
+Gelora Bung Karno Main Stadium
+</div>
 </div>
 
-<div class="inputBox">
-<label>Kategori Tiket</label>
-<select id="kategori" required>
-<option value="">Pilih Tiket</option>
-<option value="Festival A">Festival A - Rp 1.500.000</option>
-<option value="VIP">VIP - Rp 3.000.000</option>
-<option value="VVIP">VVIP - Rp 5.000.000</option>
-</select>
+<div class="row">
+<div class="label">Layanan</div>
+<div class="value">
+Ticketing Service / Jastip Tiket
+</div>
 </div>
 
-<div class="inputBox">
-<label>Jumlah Tiket</label>
-<input type="number" id="jumlah" min="1" required>
+<div class="row">
+<div class="label">Nama</div>
+<div class="value" id="nama">
+-
+</div>
 </div>
 
-<div class="summary" id="summary">
-<b>Ringkasan Pembelian</b><br><br>
-Nama: -<br>
-Kategori: -<br>
-Jumlah: -<br>
-Total: -
+<div class="row">
+<div class="label">Kategori</div>
+<div class="value" id="kategori">
+-
+</div>
 </div>
 
-<div class="qrisBox" id="qrisBox">
-<h3 style="margin-bottom:10px;">Scan QRIS Pembayaran</h3>
-<img src="qris.jpg">
+<div class="row">
+<div class="label">Jumlah</div>
+<div class="value" id="jumlah">
+-
+</div>
 </div>
 
-<button onclick="beliSekarang()">
-BELI SEKARANG
-</button>
+<div class="row">
+<div class="label">Total</div>
+<div class="value" id="total">
+-
+</div>
+</div>
 
-<div class="note">
-Pastikan semua data diisi dengan benar
+<div class="row">
+<div class="label">Status</div>
+<div class="value">
+<span class="status">
+FAILED
+</span>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Waktu</div>
+<div class="value" id="waktu">
+-
+</div>
+</div>
+
+<div class="row">
+<div class="label">Order ID</div>
+<div class="value" id="orderid">
+-
+</div>
+</div>
+
+<div class="bottom">
+<span></span>
 </div>
 
 </div>
@@ -240,136 +284,43 @@ Pastikan semua data diisi dengan benar
 
 <script>
 
-let time = 420;
+/*
+AMBIL DATA DARI INDEX.HTML
+*/
 
-const timer = document.getElementById('timer');
+document.getElementById('nama').innerHTML =
+localStorage.getItem('nama') || '-';
 
-setInterval(()=>{
-let menit = Math.floor(time/60);
-let detik = time%60;
+document.getElementById('kategori').innerHTML =
+localStorage.getItem('kategori') || '-';
 
-if(detik<10){
-detik='0'+detik;
-}
+document.getElementById('jumlah').innerHTML =
+localStorage.getItem('jumlah') || '-';
 
-timer.innerHTML=`Sisa Waktu: ${menit}:${detik}`;
+document.getElementById('total').innerHTML =
+localStorage.getItem('total') || '-';
 
-if(time<=0){
-location.reload();
-}
+/*
+WAKTU OTOMATIS
+*/
 
-time--;
-},1000);
+const now = new Date();
 
-const jumlah = document.getElementById('jumlah');
+document.getElementById('waktu').innerHTML =
+now.toLocaleDateString('id-ID') +
+', ' +
+now.toLocaleTimeString('id-ID');
 
-jumlah.addEventListener('input',()=>{
+/*
+ORDER ID RANDOM
+*/
 
-const qris = document.getElementById('qrisBox');
+const randomID =
+'WL25-' +
+Math.floor(Math.random()*99999999);
 
-if(jumlah.value > 0){
-qris.style.display='block';
-}else{
-qris.style.display='none';
-}
-
-updateSummary();
-
-});
-
-document.getElementById('nama').addEventListener('input',updateSummary);
-document.getElementById('kategori').addEventListener('change',updateSummary);
-
-function updateSummary(){
-
-const nama =
-document.getElementById('nama').value;
-
-const kategori =
-document.getElementById('kategori').value;
-
-const jumlah =
-document.getElementById('jumlah').value;
-
-let harga = 0;
-
-if(kategori==='Festival A'){
-harga=1500000;
-}
-
-if(kategori==='VIP'){
-harga=3000000;
-}
-
-if(kategori==='VVIP'){
-harga=5000000;
-}
-
-const total = harga * jumlah;
-
-document.getElementById('summary').innerHTML=`
-
-<b>Ringkasan Pembelian</b><br><br>
-
-Nama: ${nama || '-'}<br>
-
-Kategori: ${kategori || '-'}<br>
-
-Jumlah: ${jumlah || '-'}<br>
-
-Total: Rp ${total.toLocaleString('id-ID')}
-
-`;
-
-}
-
-function beliSekarang(){
-
-const nama =
-document.getElementById('nama').value;
-
-const email =
-document.getElementById('email').value;
-
-const wa =
-document.getElementById('wa').value;
-
-const kategori =
-document.getElementById('kategori').value;
-
-const jumlah =
-document.getElementById('jumlah').value;
-
-if(
-!nama ||
-!email ||
-!wa ||
-!kategori ||
-!jumlah
-){
-alert('Harap isi semua data!');
-return;
-}
-
-const data = {
-
-nama:nama,
-email:email,
-wa:wa,
-kategori:kategori,
-jumlah:jumlah,
-banner:'banner.png'
-
-};
-
-localStorage.setItem(
-'westlifeData',
-JSON.stringify(data)
-);
-
-window.location.href='failed.html';
-
-}
+document.getElementById('orderid').innerHTML =
+randomID;
 
 </script>
 
