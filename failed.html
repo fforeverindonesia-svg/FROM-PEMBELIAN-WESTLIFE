@@ -1,15 +1,16 @@
 <!-- ========================= -->
-<!-- FILE 2 : failed.html -->
+<!-- FILE 2 = failed.html -->
 <!-- ========================= -->
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Payment Failed</title>
+<title>PAYMENT FAILED</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,273 +22,262 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#040404;
+background:#050505;
+color:white;
+overflow-x:hidden;
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
-overflow-x:hidden;
-}
-
-.bg{
-position:fixed;
-width:600px;
-height:600px;
-background:red;
-filter:blur(200px);
-opacity:.2;
-border-radius:50%;
-animation:bg 8s infinite alternate;
-}
-
-@keyframes bg{
-0%{
-transform:translate(-150px,-150px);
-}
-100%{
-transform:translate(120px,120px);
-}
-}
-
-.card{
+padding:30px;
 position:relative;
-z-index:2;
-width:100%;
-max-width:480px;
-background:rgba(0,0,0,.92);
-border-radius:40px;
-overflow:hidden;
-border:1px solid rgba(255,255,255,.15);
-box-shadow:0 0 50px rgba(255,0,0,.2);
-animation:show .8s ease;
 }
 
-@keyframes show{
-from{
-opacity:0;
-transform:translateY(40px);
+body::before{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:red;
+filter:blur(180px);
+opacity:.18;
+top:-200px;
+right:-200px;
+animation:float 7s infinite alternate;
 }
-to{
-opacity:1;
-transform:translateY(0);
+
+body::after{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#ff0000;
+filter:blur(200px);
+opacity:.12;
+bottom:-300px;
+left:-200px;
+animation:float2 9s infinite alternate;
 }
+
+@keyframes float{
+from{transform:translateY(0px);}
+to{transform:translateY(50px);}
+}
+
+@keyframes float2{
+from{transform:translateY(0px);}
+to{transform:translateY(-60px);}
+}
+
+.container{
+width:100%;
+max-width:1100px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+z-index:2;
 }
 
 .poster{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:30px;
+overflow:hidden;
+box-shadow:0 0 40px rgba(255,0,0,.2);
+}
+
+.poster img{
 width:100%;
-height:300px;
+height:100%;
 object-fit:cover;
 display:block;
 }
 
 .content{
-padding:28px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:30px;
+padding:35px;
+box-shadow:0 0 40px rgba(255,0,0,.2);
 }
 
 .failed{
-font-size:55px;
-font-weight:800;
-text-align:center;
-line-height:1;
-color:#ff2b2b;
-text-shadow:0 0 20px rgba(255,0,0,.6);
-margin-bottom:25px;
-}
-
-.desc{
-text-align:center;
-font-size:17px;
-color:#ccc;
-line-height:1.7;
-margin-bottom:35px;
-}
-
-.title{
-font-size:20px;
+font-size:42px;
 font-weight:700;
-margin-bottom:25px;
-color:#ff3c3c;
-text-shadow:0 0 15px rgba(255,0,0,.5);
+color:#ff2e2e;
+margin-bottom:10px;
 }
 
-.row{
-display:flex;
-justify-content:space-between;
-gap:15px;
-margin-bottom:22px;
+.subtitle{
+opacity:.7;
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.box{
+background:rgba(255,255,255,.05);
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
+border:1px solid rgba(255,255,255,.08);
 }
 
 .label{
-color:#888;
-font-size:17px;
+font-size:13px;
+opacity:.6;
+margin-bottom:6px;
 }
 
 .value{
-color:white;
-font-size:17px;
+font-size:16px;
 font-weight:500;
-text-align:right;
-max-width:60%;
-word-break:break-word;
 }
 
-.badge{
-background:red;
-padding:12px 30px;
+.warning{
+margin-top:20px;
+padding:18px;
+background:rgba(255,0,0,.08);
+border:1px solid rgba(255,0,0,.25);
 border-radius:18px;
-font-weight:700;
-box-shadow:0 0 20px rgba(255,0,0,.7);
+color:#ffb3b3;
+line-height:1.7;
 }
 
-.line{
+.btn{
+margin-top:25px;
 width:100%;
-height:8px;
-background:#111;
-border-radius:20px;
-margin-top:35px;
-overflow:hidden;
+padding:16px;
+border:none;
+border-radius:16px;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
+color:white;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
 }
 
-.line span{
-display:block;
-width:40%;
-height:100%;
-background:linear-gradient(90deg,red,orange);
-animation:line 2s infinite;
+.btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 25px red;
 }
 
-@keyframes line{
-0%{
-margin-left:-40%;
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
 }
-100%{
-margin-left:100%;
+
+.failed{
+font-size:34px;
 }
+
 }
 
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
+<div class="container">
 
-<div class="card">
-
-<img src="banner.jpg" class="poster">
+<div class="poster">
+<img id="banner" src="banner.jpg">
+</div>
 
 <div class="content">
 
 <div class="failed">
-PAYMENT<br>FAILED
+PAYMENT FAILED
 </div>
 
-<div class="desc" id="pesan">
-Data pembelian tidak dapat diverifikasi oleh sistem.
+<div class="subtitle">
+Data pembayaran anda gagal diproses.
 Silahkan periksa kembali data pemesanan anda.
 </div>
 
-<div class="title">
-RINGKASAN PEMESANAN
+<div class="box">
+<div class="label">EVENT</div>
+<div class="value" id="eventName"></div>
 </div>
 
-<div class="row">
-<div class="label">Nama</div>
+<div class="box">
+<div class="label">NAMA</div>
 <div class="value" id="nama"></div>
 </div>
 
-<div class="row">
-<div class="label">Email</div>
+<div class="box">
+<div class="label">EMAIL</div>
 <div class="value" id="email"></div>
 </div>
 
-<div class="row">
-<div class="label">WhatsApp</div>
+<div class="box">
+<div class="label">WHATSAPP</div>
 <div class="value" id="wa"></div>
 </div>
 
-<div class="row">
-<div class="label">Alamat</div>
+<div class="box">
+<div class="label">ALAMAT</div>
 <div class="value" id="alamat"></div>
 </div>
 
-<div class="row">
-<div class="label">Kategori</div>
+<div class="box">
+<div class="label">KATEGORI</div>
 <div class="value" id="kategori"></div>
 </div>
 
-<div class="row">
-<div class="label">Jumlah Tiket</div>
+<div class="box">
+<div class="label">JUMLAH TIKET</div>
 <div class="value" id="jumlah"></div>
 </div>
 
-<div class="row">
-<div class="label">Status</div>
-<div class="value">
-<span class="badge">FAILED</span>
-</div>
+<div class="box">
+<div class="label">TOTAL</div>
+<div class="value" id="total"></div>
 </div>
 
-<div class="row">
-<div class="label">Waktu</div>
-<div class="value" id="waktu"></div>
+<div class="warning">
+Data tidak lengkap atau pembayaran gagal diverifikasi oleh sistem.
 </div>
 
-<div class="row">
-<div class="label">Order ID</div>
-<div class="value" id="orderid"></div>
-</div>
-
-<div class="line">
-<span></span>
-</div>
+<button class="btn" onclick="window.location.href='index.html'">
+KEMBALI
+</button>
 
 </div>
+
 </div>
 
 <script>
 
-document.getElementById("nama").innerHTML=
-localStorage.getItem("nama") || "-";
+const data = JSON.parse(
+localStorage.getItem('westlife_failed_payment')
+);
 
-document.getElementById("email").innerHTML=
-localStorage.getItem("email") || "-";
+if(data){
 
-document.getElementById("wa").innerHTML=
-localStorage.getItem("wa") || "-";
+document.getElementById('eventName').innerText = data.eventName || '-';
 
-document.getElementById("alamat").innerHTML=
-localStorage.getItem("alamat") || "-";
+document.getElementById('nama').innerText = data.nama || '-';
 
-document.getElementById("kategori").innerHTML=
-localStorage.getItem("kategori") || "-";
+document.getElementById('email').innerText = data.email || '-';
 
-document.getElementById("jumlah").innerHTML=
-localStorage.getItem("jumlah") || "-";
+document.getElementById('wa').innerText = data.wa || '-';
 
-let now=new Date();
+document.getElementById('alamat').innerText = data.alamat || '-';
 
-document.getElementById("waktu").innerHTML=
-now.toLocaleString('id-ID');
+document.getElementById('kategori').innerText = data.kategori || '-';
 
-let random=Math.floor(Math.random()*99999999);
+document.getElementById('jumlah').innerText = data.jumlah || '-';
 
-document.getElementById("orderid").innerHTML=
-"WL25-"+random;
+document.getElementById('total').innerText = data.total || '-';
 
-let pesan=[
-"Data pembelian tidak dapat diverifikasi oleh sistem. Silahkan periksa kembali data pemesanan anda.",
+if(data.banner){
+document.getElementById('banner').src = data.banner;
+}
 
-"Sistem mendeteksi ketidaksesuaian data transaksi. Mohon lakukan pengecekan ulang sebelum mencoba kembali.",
-
-"Verifikasi pembayaran gagal diproses karena data pembelian tidak lengkap.",
-
-"Order tidak dapat diproses sementara waktu. Pastikan seluruh data telah diisi dengan benar."
-];
-
-let randomPesan=pesan[Math.floor(Math.random()*pesan.length)];
-
-document.getElementById("pesan").innerHTML=randomPesan;
+}
 
 </script>
 
