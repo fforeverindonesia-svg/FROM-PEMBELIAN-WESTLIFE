@@ -1,303 +1,52 @@
-<!-- SIMPAN SEBAGAI index.html -->
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Westlife Checkout Premium</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WESTLIFE Ticket Booking</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Arial, sans-serif;
 }
 
 body{
 background:#050505;
-overflow-x:hidden;
 color:white;
-min-height:100vh;
-position:relative;
+overflow-x:hidden;
 }
 
-/* BACKGROUND */
 body::before{
 content:'';
 position:fixed;
-inset:0;
+width:100%;
+height:100%;
 background:
-radial-gradient(circle at top left, rgba(255,140,0,.18), transparent 30%),
-radial-gradient(circle at bottom right, rgba(255,0,0,.18), transparent 30%);
-z-index:-2;
-}
-
-body::after{
-content:'';
-position:fixed;
-inset:0;
-background-image:
-radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
-background-size:30px 30px;
-opacity:.15;
-animation:bgMove 20s linear infinite;
+radial-gradient(circle at top,#ff000055,transparent 40%),
+radial-gradient(circle at bottom,#ffffff11,transparent 30%);
 z-index:-1;
+animation:bgMove 10s linear infinite alternate;
 }
 
 @keyframes bgMove{
-from{transform:translateY(0);}
-to{transform:translateY(-100px);}
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
 }
 
 .container{
-max-width:980px;
-margin:auto;
-padding:30px;
-}
-
-.card{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:35px;
-padding:35px;
-position:relative;
+width:95%;
+max-width:450px;
+margin:20px auto;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:25px;
 overflow:hidden;
-box-shadow:0 0 40px rgba(255,140,0,.2);
+box-shadow:0 0 30px rgba(255,0,0,0.3);
 animation:fadeUp 1s ease;
-}
-
-.card::before{
-content:'';
-position:absolute;
-width:350px;
-height:350px;
-background:rgba(255,140,0,.12);
-filter:blur(120px);
-top:-150px;
-right:-100px;
-}
-
-.card::after{
-content:'';
-position:absolute;
-width:350px;
-height:350px;
-background:rgba(255,0,0,.1);
-filter:blur(120px);
-bottom:-150px;
-left:-100px;
-}
-
-/* BANNER */
-.banner{
-width:100%;
-border-radius:25px;
-overflow:hidden;
-margin-bottom:25px;
-box-shadow:0 0 35px rgba(255,140,0,.4);
-}
-
-.banner img{
-width:100%;
-display:block;
-transition:.6s;
-}
-
-.banner img:hover{
-transform:scale(1.03);
-}
-
-.title{
-font-size:42px;
-font-weight:800;
-text-align:center;
-line-height:1.2;
-background:linear-gradient(to right,#fff,#ffcc66,#ff6600);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-margin-bottom:10px;
-}
-
-.subtitle{
-text-align:center;
-color:#ccc;
-margin-bottom:30px;
-line-height:1.8;
-}
-
-/* TIMER */
-.timer{
-padding:18px;
-border-radius:20px;
-background:rgba(255,0,0,.12);
-border:1px solid rgba(255,0,0,.3);
-text-align:center;
-font-size:24px;
-font-weight:700;
-color:#ff6666;
-margin-bottom:30px;
-animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-50%{
-transform:scale(1.02);
-}
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.form-group{
-margin-bottom:22px;
-}
-
-label{
-display:block;
-margin-bottom:10px;
-font-weight:600;
-color:#ffcc80;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:16px;
-border:none;
-outline:none;
-border-radius:18px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.1);
-color:white;
-font-size:15px;
-transition:.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-border-color:#ff9900;
-box-shadow:0 0 20px rgba(255,153,0,.25);
-}
-
-option{
-background:#111;
-}
-
-.total-box{
-margin-top:20px;
-padding:25px;
-text-align:center;
-font-size:30px;
-font-weight:800;
-border-radius:25px;
-background:linear-gradient(45deg,rgba(255,140,0,.2),rgba(255,200,0,.08));
-border:1px solid rgba(255,255,255,.08);
-box-shadow:0 0 25px rgba(255,153,0,.15);
-}
-
-/* QRIS */
-.qris-box{
-display:none;
-margin-top:30px;
-padding:30px;
-border-radius:30px;
-background:rgba(255,255,255,.04);
-border:2px dashed rgba(255,153,0,.35);
-text-align:center;
-animation:fadeUp .8s ease;
-}
-
-.qris-box img{
-width:100%;
-max-width:320px;
-border-radius:20px;
-margin:20px 0;
-box-shadow:0 0 30px rgba(255,153,0,.35);
-}
-
-.qris-box h2{
-margin-bottom:10px;
-font-size:28px;
-}
-
-.qris-box p{
-color:#ccc;
-line-height:1.7;
-margin-bottom:15px;
-}
-
-/* BUTTON */
-.buy-btn{
-width:100%;
-padding:18px;
-margin-top:30px;
-border:none;
-border-radius:60px;
-background:linear-gradient(45deg,#ff6600,#ffcc00);
-color:black;
-font-size:20px;
-font-weight:800;
-cursor:pointer;
-transition:.4s;
-box-shadow:0 0 30px rgba(255,153,0,.45);
-}
-
-.buy-btn:hover{
-transform:translateY(-4px) scale(1.02);
-}
-
-/* LOADING */
-.loading-screen{
-position:fixed;
-inset:0;
-background:#000;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;
-}
-
-.loader{
-width:130px;
-height:130px;
-border:10px solid rgba(255,255,255,.08);
-border-top:10px solid #ff9900;
-border-radius:50%;
-animation:spin 1s linear infinite;
-margin-bottom:30px;
-}
-
-.loading-screen h1{
-font-size:42px;
-margin-bottom:15px;
-color:#ffcc66;
-}
-
-.loading-screen p{
-color:#ddd;
-text-align:center;
-line-height:1.8;
-font-size:18px;
-}
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
 }
 
 @keyframes fadeUp{
@@ -311,325 +60,316 @@ transform:translateY(0);
 }
 }
 
-/* MOBILE */
-@media(max-width:768px){
-
-.grid{
-grid-template-columns:1fr;
+.banner{
+width:100%;
+height:250px;
+object-fit:cover;
 }
 
-.title{
-font-size:30px;
+.content{
+padding:20px;
 }
 
-.card{
-padding:25px;
+h1{
+font-size:28px;
+text-align:center;
+margin-bottom:10px;
+color:#fff;
+text-shadow:0 0 15px red;
 }
 
+.timer{
+background:#ff0000;
+padding:12px;
+text-align:center;
+border-radius:15px;
+font-weight:bold;
+margin-bottom:20px;
+animation:pulse 1s infinite;
 }
 
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.03);}
+100%{transform:scale(1);}
+}
+
+.inputBox{
+margin-bottom:15px;
+}
+
+.inputBox label{
+display:block;
+margin-bottom:6px;
+font-size:14px;
+}
+
+.inputBox input,
+.inputBox select{
+width:100%;
+padding:14px;
+border:none;
+border-radius:15px;
+background:#111;
+color:white;
+outline:none;
+font-size:15px;
+}
+
+.summary{
+background:#111;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+line-height:1.8;
+border:1px solid #333;
+}
+
+.qrisBox{
+display:none;
+margin-top:20px;
+text-align:center;
+animation:fadeIn 1s ease;
+}
+
+.qrisBox img{
+width:100%;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+box-shadow:0 0 20px rgba(255,0,0,0.5);
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.note{
+text-align:center;
+font-size:12px;
+margin-top:15px;
+opacity:0.7;
+}
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<div class="card">
+<img src="banner.png" class="banner">
 
-<div class="banner">
-<img src="banner.png">
+<div class="content">
+
+<h1>WESTLIFE</h1>
+
+<div class="timer" id="timer">
+Sisa Waktu: 07:00
 </div>
 
-<h1 class="title">
-WESTLIFE WORLD TOUR
-</h1>
-
-<p class="subtitle">
-Official Premium Ticket Reservation System
-</p>
-
-<div class="timer">
-Sisa Waktu Pengisian :
-<span id="timer">07:00</span>
-</div>
-
-<form id="checkoutForm">
-
-<div class="form-group">
+<div class="inputBox">
 <label>Nama Lengkap</label>
 <input type="text" id="nama" required>
 </div>
 
-<div class="grid">
-
-<div class="form-group">
-<label>Nomor Identitas</label>
-<input type="text" id="identitas" required>
-</div>
-
-<div class="form-group">
+<div class="inputBox">
 <label>Email</label>
 <input type="email" id="email" required>
 </div>
 
-</div>
-
-<div class="grid">
-
-<div class="form-group">
+<div class="inputBox">
 <label>Nomor WhatsApp</label>
-<input type="tel" id="wa" required>
+<input type="number" id="wa" required>
 </div>
 
-<div class="form-group">
+<div class="inputBox">
 <label>Kategori Tiket</label>
-
-<select id="ticketCategory" required>
-
-<option value="">
-Pilih Category
-</option>
-
-<option value="2750000">
-VIP PACKAGE - Rp 2.750.000
-</option>
-
-<option value="2500000">
-CAT 1 A & B - Rp 2.500.000
-</option>
-
-<option value="2250000">
-CAT 2 A & B - Rp 2.250.000
-</option>
-
-<option value="1850000">
-CAT 3 A & B - Rp 1.850.000
-</option>
-
-<option value="1450000">
-CAT 4 A & B - Rp 1.450.000
-</option>
-
-<option value="1250000">
-CAT 5 A & B - Rp 1.250.000
-</option>
-
-<option value="850000">
-CAT 6 A & B - Rp 850.000
-</option>
-
+<select id="kategori" required>
+<option value="">Pilih Tiket</option>
+<option value="Festival A">Festival A - Rp 1.500.000</option>
+<option value="VIP">VIP - Rp 3.000.000</option>
+<option value="VVIP">VVIP - Rp 5.000.000</option>
 </select>
-
 </div>
 
-</div>
-
-<div class="grid">
-
-<div class="form-group">
+<div class="inputBox">
 <label>Jumlah Tiket</label>
 <input type="number" id="jumlah" min="1" required>
 </div>
 
-<div class="form-group">
-<label>Total Pembayaran</label>
-<input type="text" id="total" readonly>
+<div class="summary" id="summary">
+<b>Ringkasan Pembelian</b><br><br>
+Nama: -<br>
+Kategori: -<br>
+Jumlah: -<br>
+Total: -
 </div>
 
-</div>
-
-<div class="form-group">
-<label>Alamat / Domisili</label>
-<textarea rows="4" id="alamat" required></textarea>
-</div>
-
-<!-- QRIS -->
-<div class="qris-box" id="qrisBox">
-
-<h2>PEMBAYARAN QRIS</h2>
-
-<p>
-Silahkan lakukan pembayaran sesuai total tagihan.
-</p>
-
+<div class="qrisBox" id="qrisBox">
+<h3 style="margin-bottom:10px;">Scan QRIS Pembayaran</h3>
 <img src="qris.jpg">
-
-<div class="form-group">
-<label>Upload Bukti Pembayaran</label>
-<input type="file" id="bukti" accept="image/*" required>
 </div>
 
-</div>
-
-<div class="total-box">
-TOTAL :
-<span id="totalDisplay">
-Rp 0
-</span>
-</div>
-
-<button type="submit" class="buy-btn">
+<button onclick="beliSekarang()">
 BELI SEKARANG
 </button>
 
-</form>
-
+<div class="note">
+Pastikan semua data diisi dengan benar
 </div>
 
 </div>
-
-<!-- LOADING -->
-<div class="loading-screen" id="loadingScreen">
-
-<div class="loader"></div>
-
-<h1>
-MEMPROSES PEMBELIAN
-</h1>
-
-<p>
-Mohon Tunggu...
-<br>
-Sistem Sedang Memvalidasi Data Pembayaran Anda
-</p>
-
 </div>
 
 <script>
 
-/* ELEMENT */
-const category = document.getElementById('ticketCategory');
-const jumlah = document.getElementById('jumlah');
-const total = document.getElementById('total');
-const totalDisplay = document.getElementById('totalDisplay');
-const qrisBox = document.getElementById('qrisBox');
-
-/* FORMAT */
-function rupiah(number){
-
-return 'Rp ' + number.toLocaleString('id-ID');
-
-}
-
-/* CALCULATE */
-function calculate(){
-
-const price = parseInt(category.value || 0);
-
-const qty = parseInt(jumlah.value || 0);
-
-const grandTotal = price * qty;
-
-total.value = rupiah(grandTotal);
-
-totalDisplay.innerHTML = rupiah(grandTotal);
-
-/* SHOW QRIS */
-if(qty > 0){
-
-qrisBox.style.display='block';
-
-}else{
-
-qrisBox.style.display='none';
-
-}
-
-}
-
-category.addEventListener('change',calculate);
-
-jumlah.addEventListener('input',calculate);
-
-/* TIMER */
 let time = 420;
 
-const timerDisplay = document.getElementById('timer');
+const timer = document.getElementById('timer');
 
-const countdown = setInterval(()=>{
+setInterval(()=>{
+let menit = Math.floor(time/60);
+let detik = time%60;
 
-let minutes = Math.floor(time / 60);
+if(detik<10){
+detik='0'+detik;
+}
 
-let seconds = time % 60;
+timer.innerHTML=`Sisa Waktu: ${menit}:${detik}`;
 
-minutes = minutes < 10 ? '0'+minutes : minutes;
-
-seconds = seconds < 10 ? '0'+seconds : seconds;
-
-timerDisplay.innerHTML = `${minutes}:${seconds}`;
-
-if(time <= 0){
-
-clearInterval(countdown);
-
-window.location.href='failed.html';
-
+if(time<=0){
+location.reload();
 }
 
 time--;
-
 },1000);
 
-/* FORM */
-document.getElementById('checkoutForm')
-.addEventListener('submit',function(e){
+const jumlah = document.getElementById('jumlah');
 
-e.preventDefault();
+jumlah.addEventListener('input',()=>{
 
-const form = this;
+const qris = document.getElementById('qrisBox');
 
-if(!form.checkValidity()){
+if(jumlah.value > 0){
+qris.style.display='block';
+}else{
+qris.style.display='none';
+}
 
-alert('Semua Data Wajib Diisi');
+updateSummary();
 
-return;
+});
+
+document.getElementById('nama').addEventListener('input',updateSummary);
+document.getElementById('kategori').addEventListener('change',updateSummary);
+
+function updateSummary(){
+
+const nama =
+document.getElementById('nama').value;
+
+const kategori =
+document.getElementById('kategori').value;
+
+const jumlah =
+document.getElementById('jumlah').value;
+
+let harga = 0;
+
+if(kategori==='Festival A'){
+harga=1500000;
+}
+
+if(kategori==='VIP'){
+harga=3000000;
+}
+
+if(kategori==='VVIP'){
+harga=5000000;
+}
+
+const total = harga * jumlah;
+
+document.getElementById('summary').innerHTML=`
+
+<b>Ringkasan Pembelian</b><br><br>
+
+Nama: ${nama || '-'}<br>
+
+Kategori: ${kategori || '-'}<br>
+
+Jumlah: ${jumlah || '-'}<br>
+
+Total: Rp ${total.toLocaleString('id-ID')}
+
+`;
 
 }
 
-/* SAVE DATA */
-const dataPembelian = {
+function beliSekarang(){
 
-eventName:'WESTLIFE WORLD TOUR',
+const nama =
+document.getElementById('nama').value;
 
-nama:document.getElementById('nama').value,
+const email =
+document.getElementById('email').value;
 
-identitas:document.getElementById('identitas').value,
+const wa =
+document.getElementById('wa').value;
 
-email:document.getElementById('email').value,
+const kategori =
+document.getElementById('kategori').value;
 
-wa:document.getElementById('wa').value,
+const jumlah =
+document.getElementById('jumlah').value;
 
-alamat:document.getElementById('alamat').value,
+if(
+!nama ||
+!email ||
+!wa ||
+!kategori ||
+!jumlah
+){
+alert('Harap isi semua data!');
+return;
+}
 
-kategori:category.options[
-category.selectedIndex
-].text,
+const data = {
 
-jumlah:document.getElementById('jumlah').value,
-
-total:document.getElementById('total').value,
-
+nama:nama,
+email:email,
+wa:wa,
+kategori:kategori,
+jumlah:jumlah,
 banner:'banner.png'
 
 };
 
 localStorage.setItem(
-'westlife_failed_payment',
-JSON.stringify(dataPembelian)
+'westlifeData',
+JSON.stringify(data)
 );
-
-/* LOADING */
-document.getElementById('loadingScreen')
-.style.display='flex';
-
-setTimeout(()=>{
 
 window.location.href='failed.html';
 
-},5000);
-
-});
+}
 
 </script>
 
