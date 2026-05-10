@@ -3,91 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pembayaran Gagal</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f0f0f,#1a1a1a,#111);
-min-height:100vh;
+background:black;
+color:white;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
-color:white;
+min-height:100vh;
 padding:20px;
+overflow:hidden;
 }
 
-.background{
-position:absolute;
+body::before{
+content:'';
+position:fixed;
 width:100%;
 height:100%;
-overflow:hidden;
+background:
+radial-gradient(circle,#ff000044,transparent);
+animation:bg 5s infinite alternate;
 z-index:-1;
 }
 
-.circle{
-position:absolute;
-border-radius:50%;
-background:rgba(255,0,0,0.15);
-animation:float 10s infinite linear;
+@keyframes bg{
+0%{transform:scale(1);}
+100%{transform:scale(1.2);}
 }
 
-.circle:nth-child(1){
-width:300px;
-height:300px;
-top:-100px;
-left:-100px;
-}
-
-.circle:nth-child(2){
-width:250px;
-height:250px;
-bottom:-100px;
-right:-100px;
-animation-duration:14s;
-}
-
-.circle:nth-child(3){
-width:180px;
-height:180px;
-top:50%;
-left:70%;
-animation-duration:18s;
-}
-
-@keyframes float{
-0%{
-transform:translateY(0px) rotate(0deg);
-}
-50%{
-transform:translateY(40px) rotate(180deg);
-}
-100%{
-transform:translateY(0px) rotate(360deg);
-}
-}
-
-.container{
+.card{
 width:100%;
-max-width:500px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.1);
-padding:35px;
+max-width:420px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
 border-radius:25px;
-text-align:center;
-box-shadow:0 0 40px rgba(255,0,0,0.3);
-animation:fadeIn 1s ease;
+padding:20px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 40px rgba(255,0,0,0.4);
+animation:fade 1s ease;
 }
 
-@keyframes fadeIn{
+@keyframes fade{
 from{
 opacity:0;
 transform:translateY(30px);
@@ -98,104 +65,128 @@ transform:translateY(0);
 }
 }
 
-.icon{
-font-size:90px;
+.banner{
+width:100%;
+border-radius:20px;
 margin-bottom:20px;
-animation:shake 1.5s infinite;
+}
+
+h1{
+text-align:center;
+font-size:30px;
+color:#ff4d4d;
+margin-bottom:15px;
+text-shadow:0 0 20px red;
+}
+
+.failed{
+font-size:80px;
+text-align:center;
+margin-bottom:10px;
+animation:shake 1s infinite;
 }
 
 @keyframes shake{
 0%{transform:translateX(0);}
-25%{transform:translateX(-8px);}
-50%{transform:translateX(8px);}
-75%{transform:translateX(-8px);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
 100%{transform:translateX(0);}
 }
 
-h1{
-font-size:36px;
-margin-bottom:15px;
-color:#ff4d4d;
-}
-
-p{
-font-size:16px;
-line-height:1.7;
-color:#ddd;
-margin-bottom:25px;
-}
-
-.box{
-background:rgba(255,0,0,0.1);
+.info{
+background:#111;
 padding:15px;
 border-radius:15px;
-margin-bottom:25px;
-border:1px solid rgba(255,0,0,0.3);
+line-height:1.8;
+margin-top:15px;
+border:1px solid #333;
 }
 
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:15px;
-font-size:18px;
-font-weight:bold;
-background:linear-gradient(45deg,#ff0000,#ff4d4d);
-color:white;
-cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 20px rgba(255,0,0,0.4);
-}
-
-button:hover{
-transform:scale(1.03);
-box-shadow:0 0 30px rgba(255,0,0,0.7);
-}
-
-.footer{
+.reason{
 margin-top:20px;
-font-size:13px;
-color:#999;
+background:#2a0000;
+padding:15px;
+border-radius:15px;
+text-align:center;
+color:#ffb3b3;
 }
+
+a{
+display:block;
+margin-top:20px;
+text-align:center;
+padding:15px;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
+border-radius:15px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+font-size:18px;
+transition:0.3s;
+}
+
+a:hover{
+transform:scale(1.03);
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="background">
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-</div>
+<div class="card">
 
-<div class="container">
-
-<div class="icon">❌</div>
+<div class="failed">✖</div>
 
 <h1>PEMBAYARAN GAGAL</h1>
 
-<p>
-Transaksi tiket Westlife Anda tidak dapat diproses.
-Silahkan periksa kembali data pemesanan dan pastikan semua data telah diisi dengan benar.
-</p>
+<img src="banner.png" class="banner" id="banner">
 
-<div class="box">
-<b>Penyebab kemungkinan:</b><br><br>
-• Data pemesan belum lengkap<br>
-• QRIS belum dibayar<br>
-• Waktu pembayaran habis<br>
-• Jumlah tiket belum sesuai
+<div class="info" id="info">
+Memuat data...
 </div>
 
-<button onclick="window.location.href='index.html'">
-Kembali Ke Pemesanan
-</button>
-
-<div class="footer">
-WESTLIFE CONCERT SYSTEM © 2026
+<div class="reason">
+Data pemesanan tidak lengkap atau pembayaran gagal diverifikasi.
+Silakan periksa kembali data Anda.
 </div>
 
+<a href="index.html">
+KEMBALI KE PEMESANAN
+</a>
+
 </div>
+
+<script>
+
+const data =
+JSON.parse(
+localStorage.getItem('westlifeData')
+);
+
+if(data){
+
+document.getElementById('info').innerHTML=`
+
+<b>Event:</b> WESTLIFE THE ANNIVERSARY TOUR<br><br>
+
+<b>Nama:</b> ${data.nama}<br>
+
+<b>Email:</b> ${data.email}<br>
+
+<b>WhatsApp:</b> ${data.wa}<br>
+
+<b>Kategori:</b> ${data.kategori}<br>
+
+<b>Jumlah Tiket:</b> ${data.jumlah}
+
+`;
+
+document.getElementById('banner').src=data.banner;
+
+}
+
+</script>
 
 </body>
 </html>
